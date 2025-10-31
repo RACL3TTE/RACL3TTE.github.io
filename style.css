@@ -2,12 +2,12 @@
    VARIABLES & SETUP "DARK TECH"
    ======================= */
 :root {
-    --primary-color: #00BFFF; /* Bleu électrique (Deep Sky Blue) */
-    --secondary-color: #f0f8ff; /* Blanc cassé (Alice Blue) pour les titres */
-    --bg-main: #0f172a; /* Bleu nuit (très sombre) */
-    --bg-card: #1e293b; /* Bleu ardoise (plus clair pour les cartes) */
-    --text-color: #e0e0e0; /* Gris clair pour le texte */
-    --border-color: #334155; /* Gris-bleu pour les bordures */
+    --primary-color: #00BFFF; /* Bleu électrique */
+    --secondary-color: #f0f8ff; /* Blanc cassé */
+    --bg-main: #0f172a; /* Bleu nuit */
+    --bg-card: #1e293b; /* Bleu ardoise */
+    --text-color: #e0e0e0; /* Gris clair */
+    --border-color: #334155; /* Gris-bleu */
     --shadow: 0 4px 10px rgba(0,0,0,0.3);
     --hover-shadow: 0 10px 20px rgba(0,0,0,0.4);
     --glow: 0 0 15px rgba(0, 191, 255, 0.3);
@@ -18,8 +18,7 @@ html {
 }
 
 body {
-    /* Nouvelle police "Roboto" pour la lisibilité */
-    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', -apple-system, sans-serif;
     line-height: 1.7;
     background-color: var(--bg-main);
     color: var(--text-color);
@@ -37,7 +36,6 @@ body {
    TYPOGRAPHIE
    ======================= */
 h2, h3 {
-    /* Nouvelle police "Poppins" pour les titres (moderne) */
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
 }
@@ -49,7 +47,6 @@ h2 {
     padding-bottom: 10px;
     margin-top: 0;
     margin-bottom: 25px;
-    /* Effet de "lueur" (glow) */
     text-shadow: 0 0 5px rgba(0, 191, 255, 0.3);
 }
 
@@ -65,11 +62,10 @@ p, li {
     color: var(--text-color);
 }
 li { margin-bottom: 5px; }
-
 strong { color: var(--secondary-color); font-weight: 500; }
 
 /* =======================
-   NAVIGATION (Thème sombre)
+   NAVIGATION
    ======================= */
 nav {
     background-color: var(--bg-card);
@@ -125,7 +121,7 @@ nav a:hover::after {
 }
 
 /* =======================
-   SECTIONS & CARDS (Thème sombre)
+   SECTIONS & CARDS (Avec Animations)
    ======================= */
 section {
     padding-top: 80px; 
@@ -134,9 +130,9 @@ section {
     transition: all 0.3s ease-in-out;
 }
 
-/* Feedback :target */
+/* Feedback :target (surlignage au clic) */
 section:target {
-    background-color: #131c31; /* Bleu encore plus foncé */
+    background-color: #131c31;
     border-left: 5px solid var(--primary-color);
     padding-left: 25px;
 }
@@ -145,7 +141,7 @@ section:target {
     background-color: var(--bg-card);
     margin-bottom: 25px;
     padding: 30px;
-    border-radius: 6px; /* Plus "tech" */
+    border-radius: 6px;
     box-shadow: var(--shadow);
     border: 1px solid var(--border-color);
     transition: all 0.3s ease;
@@ -154,22 +150,34 @@ section:target {
 .card:hover {
     transform: translateY(-5px);
     box-shadow: var(--hover-shadow);
-    border-color: var(--primary-color); /* Surbrillance au survol */
+    border-color: var(--primary-color);
 }
 
-/* Animation d'entrée */
+/* Animation d'entrée (non-JS) */
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .animated-card {
     animation: fadeInUp 0.5s ease-out forwards;
     opacity: 0;
 }
-.animated-card:nth-of-type(1) { animation-delay: 0.1s; }
-.animated-card:nth-of-type(2) { animation-delay: 0.2s; }
-.animated-card:nth-of-type(3) { animation-delay: 0.3s; }
+/* Décalage des animations */
+section:nth-of-type(1) .animated-card { animation-delay: 0.1s; }
+section:nth-of-type(2) .animated-card:nth-of-type(1) { animation-delay: 0.1s; }
+section:nth-of-type(2) .animated-card:nth-of-type(2) { animation-delay: 0.2s; }
+section:nth-of-type(3) .animated-card { animation-delay: 0.1s; }
+section:nth-of-type(4) .animated-card { animation-delay: 0.1s; }
+section:nth-of-type(5) .animated-card { animation-delay: 0.1s; }
+section:nth-of-type(6) .animated-card { animation-delay: 0.2s; }
+
 
 /* =======================
    ÉLÉMENTS SPÉCIFIQUES (HEXAGONE)
@@ -194,10 +202,9 @@ section:target {
     border: 1px dashed var(--border-color);
 }
 
-/* NOUVEAU : Profil en hexagone */
 .profile-pic-placeholder {
     width: 150px;
-    height: 173.2px; /* Ratio pour hexagone parfait */
+    height: 173.2px; 
     background: var(--border-color);
     color: var(--primary-color);
     font-weight: 700;
@@ -208,14 +215,12 @@ section:target {
     justify-content: center;
     box-shadow: var(--glow);
     transition: all 0.3s ease;
-    /* La magie du clip-path */
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 .profile-pic-placeholder:hover {
     transform: scale(1.05);
     box-shadow: 0 0 25px rgba(0, 191, 255, 0.5);
 }
-
 
 .file-links { list-style: none; padding: 0; }
 .file-links li { margin-bottom: 10px; }
@@ -226,21 +231,19 @@ section:target {
     padding: 15px 20px;
     border-radius: 5px;
     text-decoration: none;
-    color: var(--bg-main); /* Texte sombre sur bouton clair */
+    color: var(--bg-main);
     font-weight: 700;
     font-family: 'Poppins', sans-serif;
     background-color: var(--primary-color);
     transition: all 0.3s ease;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-
 .button:hover {
     background-color: var(--secondary-color);
     color: var(--bg-main);
     transform: translateY(-2px);
     box-shadow: var(--glow);
 }
-
 .button-optional {
     background-color: transparent;
     border: 2px solid var(--border-color);
