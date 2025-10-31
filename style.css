@@ -1,13 +1,16 @@
 /* =======================
-   VARIABLES & SETUP
+   VARIABLES & SETUP "DARK TECH"
    ======================= */
 :root {
-    --primary-color: #B22222; /* Rouge N7 plus profond (Firebrick) */
-    --secondary-color: #2c3e50; /* Bleu nuit pour le texte */
-    --light-gray: #f4f7f6;
-    --white: #ffffff;
-    --shadow: 0 4px 10px rgba(0,0,0,0.05);
-    --hover-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    --primary-color: #00BFFF; /* Bleu électrique (Deep Sky Blue) */
+    --secondary-color: #f0f8ff; /* Blanc cassé (Alice Blue) pour les titres */
+    --bg-main: #0f172a; /* Bleu nuit (très sombre) */
+    --bg-card: #1e293b; /* Bleu ardoise (plus clair pour les cartes) */
+    --text-color: #e0e0e0; /* Gris clair pour le texte */
+    --border-color: #334155; /* Gris-bleu pour les bordures */
+    --shadow: 0 4px 10px rgba(0,0,0,0.3);
+    --hover-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    --glow: 0 0 15px rgba(0, 191, 255, 0.3);
 }
 
 html {
@@ -15,10 +18,11 @@ html {
 }
 
 body {
-    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    /* Nouvelle police "Roboto" pour la lisibilité */
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     line-height: 1.7;
-    background-color: var(--light-gray);
-    color: #333;
+    background-color: var(--bg-main);
+    color: var(--text-color);
     margin: 0;
     padding: 0;
 }
@@ -33,8 +37,9 @@ body {
    TYPOGRAPHIE
    ======================= */
 h2, h3 {
-    font-family: 'Lato', sans-serif;
-    font-weight: 700;
+    /* Nouvelle police "Poppins" pour les titres (moderne) */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
 }
 
 h2 {
@@ -44,6 +49,8 @@ h2 {
     padding-bottom: 10px;
     margin-top: 0;
     margin-bottom: 25px;
+    /* Effet de "lueur" (glow) */
+    text-shadow: 0 0 5px rgba(0, 191, 255, 0.3);
 }
 
 h3 {
@@ -54,20 +61,25 @@ h3 {
 
 p, li {
     font-size: 1.1rem;
-    color: #444;
+    font-weight: 400;
+    color: var(--text-color);
 }
+li { margin-bottom: 5px; }
+
+strong { color: var(--secondary-color); font-weight: 500; }
 
 /* =======================
-   NAVIGATION (Effets de survol améliorés)
+   NAVIGATION (Thème sombre)
    ======================= */
 nav {
-    background-color: #fff; /* Changé pour un look plus propre */
+    background-color: var(--bg-card);
     padding: 10px 0;
     position: sticky;
     top: 0;
     z-index: 100;
     width: 100%;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    border-bottom: 1px solid var(--border-color);
 }
 
 nav ul {
@@ -80,7 +92,8 @@ nav ul {
 }
 
 nav a {
-    color: var(--secondary-color);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 1rem;
     padding: 15px 20px;
@@ -100,6 +113,7 @@ nav a::after {
     transform: translateX(-50%);
     background-color: var(--primary-color);
     transition: width 0.3s ease-out;
+    border-radius: 2px;
 }
 
 nav a:hover {
@@ -107,69 +121,58 @@ nav a:hover {
 }
 
 nav a:hover::after {
-    width: calc(100% - 40px); /* Largeur du padding */
+    width: calc(100% - 40px);
 }
 
 /* =======================
-   SECTIONS & CARDS (Avec Animations)
+   SECTIONS & CARDS (Thème sombre)
    ======================= */
 section {
     padding-top: 80px; 
     margin-top: -60px;
     margin-bottom: 20px;
-    /* Feedback de navigation "Active" */
     transition: all 0.3s ease-in-out;
 }
 
-/* NOUVEAU : Effet :target pour savoir où on est */
+/* Feedback :target */
 section:target {
-    background-color: #fff8f8; /* Léger fond rose */
+    background-color: #131c31; /* Bleu encore plus foncé */
     border-left: 5px solid var(--primary-color);
-    padding-left: 25px; /* Compense le padding de .card */
+    padding-left: 25px;
 }
 
 .card {
-    background-color: var(--white);
+    background-color: var(--bg-card);
     margin-bottom: 25px;
     padding: 30px;
-    border-radius: 8px;
+    border-radius: 6px; /* Plus "tech" */
     box-shadow: var(--shadow);
-    border: 1px solid #eee;
+    border: 1px solid var(--border-color);
     transition: all 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-5px);
     box-shadow: var(--hover-shadow);
+    border-color: var(--primary-color); /* Surbrillance au survol */
 }
 
-/* NOUVEAU : Animation d'entrée */
+/* Animation d'entrée */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .animated-card {
-    /* Applique l'animation */
     animation: fadeInUp 0.5s ease-out forwards;
-    opacity: 0; /* Commence invisible */
+    opacity: 0;
 }
-
-/* Décalage des animations pour un effet "escalier" */
 .animated-card:nth-of-type(1) { animation-delay: 0.1s; }
 .animated-card:nth-of-type(2) { animation-delay: 0.2s; }
 .animated-card:nth-of-type(3) { animation-delay: 0.3s; }
-/* (S'applique par section) */
-
 
 /* =======================
-   GRILLE CARRIÈRE & BOUTONS
+   ÉLÉMENTS SPÉCIFIQUES (HEXAGONE)
    ======================= */
 .career-grid {
     display: grid;
@@ -177,67 +180,76 @@ section:target {
     gap: 25px;
 }
 
-.career-info {
-    display: flex;,
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 .video-placeholder {
     width: 100%;
     aspect-ratio: 16 / 9;
-    background: #222;
-    color: #fff;
+    background: #0f172a;
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: 6px;
     min-height: 200px;
+    border: 1px dashed var(--border-color);
 }
 
+/* NOUVEAU : Profil en hexagone */
 .profile-pic-placeholder {
     width: 150px;
-    height: 150px;
-    background: #eee;
-    border: 5px solid #fff;
-    box-shadow: var(--shadow);
-    border-radius: 50%;
+    height: 173.2px; /* Ratio pour hexagone parfait */
+    background: var(--border-color);
+    color: var(--primary-color);
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
     margin: 20px auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #999;
-    font-weight: bold;
+    box-shadow: var(--glow);
+    transition: all 0.3s ease;
+    /* La magie du clip-path */
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
+.profile-pic-placeholder:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 191, 255, 0.5);
+}
+
 
 .file-links { list-style: none; padding: 0; }
 .file-links li { margin-bottom: 10px; }
 
-.button, .button-optional {
+.button {
     display: block;
     text-align: center;
     padding: 15px 20px;
     border-radius: 5px;
     text-decoration: none;
-    color: #fff;
-    font-weight: bold;
+    color: var(--bg-main); /* Texte sombre sur bouton clair */
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
     background-color: var(--primary-color);
     transition: all 0.3s ease;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .button:hover {
-    background-color: #a00000;
-    color: #fff;
+    background-color: var(--secondary-color);
+    color: var(--bg-main);
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: var(--glow);
 }
 
-.button-optional { background-color: #555; }
+.button-optional {
+    background-color: transparent;
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
+}
 .button-optional:hover {
-    background-color: #333;
-    color: #fff;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background-color: rgba(0, 191, 255, 0.1);
     transform: translateY(-2px);
 }
 
@@ -248,14 +260,14 @@ section:target {
     .career-grid { grid-template-columns: 1fr; }
     nav ul { justify-content: space-around; }
     nav a { padding: 10px; }
-    nav a::after { display: none; } /* Désactive l'anim de soulignement sur mobile */
+    nav a::after { display: none; }
 }
 
 footer {
     text-align: center;
     padding: 30px 0;
     margin-top: 40px;
-    color: #888;
+    color: var(--border-color);
     font-size: 0.9rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
 }
